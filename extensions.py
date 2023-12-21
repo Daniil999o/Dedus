@@ -2,29 +2,28 @@
 
 import re
 import os
-import shutil
 from collections import Counter
 
 
-def show_all(words):
+def show_all(words: list) -> str:
     return '\n'.join(words)
 
 
-def read(path):
+def read(path: str) -> str:
     with open(path, 'r', encoding='utf-8') as f:
         return f.read()
 
 
-def get_words_from_lines(path):
+def get_words_from_lines(path: str) -> list:
     return read(path).split('\n')
 
 
-def remove_rare_words(words):
+def remove_rare_words(words: list) -> list:
     counter = Counter(words)
     return list(filter(lambda x: counter[x] > 1, words))
 
 
-def filter_text(text):
+def filter_text(text: str) -> list:
     text = re.sub(r'[a-zA-Z\s]+', ' ', text.lower())
     text = re.sub(r'[^\w\s]', ' ', text)
     text = re.sub(r'\s+', ' ', text)
@@ -33,7 +32,7 @@ def filter_text(text):
     return remove_prepositions(remove_rare_words(text.split(' ')))
 
 
-def save(string, path):
+def save(string: str, path: str):
     if os.path.isfile(path):
         os.remove(path)
 
@@ -41,11 +40,11 @@ def save(string, path):
         f.write(string)
 
 
-def remove_prepositions(words):
+def remove_prepositions(words: list) -> list:
     return list(filter(lambda x: len(x) > 3, words))
 
 
-def remove_duplicates(words):
+def remove_duplicates(words: list) -> list:
     result = []
     for x in words:
         if x not in result:
@@ -54,7 +53,7 @@ def remove_duplicates(words):
     return result
 
 
-def get_roots(words):
+def get_roots(words: list) -> list:
     words = remove_duplicates(words)
 
     result = []

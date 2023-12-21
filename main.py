@@ -1,6 +1,7 @@
 ﻿# -*- coding: utf-8 -*-
 
 import graphs
+import shutil
 from extensions import *
 
 docs_folder = 'docs/'
@@ -8,7 +9,7 @@ filtered_folder = 'filtered/'
 documents = [docs_folder + f for f in os.listdir(docs_folder) if os.path.isfile(os.path.join(docs_folder, f))]
 
 
-def filter_and_save_docs(docs):
+def filter_and_save_docs(docs: list):
     print('Start filtering...')
 
     files = {}
@@ -29,7 +30,7 @@ def filter_and_save_docs(docs):
     print('\n\n\n')
 
 
-def compare_with_others(current_text_id, words, all_words):
+def compare_with_others(current_text_id: int, words: list, all_words: list):
     counter = Counter(words)
 
     percentages = {}

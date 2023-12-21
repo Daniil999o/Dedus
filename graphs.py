@@ -1,9 +1,10 @@
 ﻿import matplotlib.pyplot as plt
+from collections import Counter
 
 max_words = 15
 
 
-def show_graph(title, counter, counters, documents):
+def show_graph(title: str, counter: Counter, counters: list, documents: list):
     counter = counter.most_common(max_words)
 
     plt.title(f'{title} graph')
